@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="parts/head :: head"></head>
+<body>
+
+<header th:replace="parts/navbar :: navbar"></header>
+
+<div class="container mt-5">
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <table border = "1"  width = "50%" cellpadding = "3">
+                <div th:each="users : ${users}">
+                    <tr>
+                        <center>
+                            <th> User Name :</th>
+                            <th type="text" name="username" placeholder="User name" th:text="${users} ? ${users.getUsername()} : '' " required/>
+                            <th>
+                                <a th:href="@{${'/users/delete/'  + users.getId()}}">Delete</a>
+                            </th>
+                        </center>
+                    </tr>
+                </div>
+            </table>
+        </div>
+    </div>
+
+    <style>
+        table {
+            width: 100%;
+        }
+
+        th{
+            text-align: left;
+        }
+        td{
+            text-align: right;
+        }
+    </style>
+
+
+</div>
+<scripts th:replace="parts/foot :: foot"></scripts>
+</body>
+</html>

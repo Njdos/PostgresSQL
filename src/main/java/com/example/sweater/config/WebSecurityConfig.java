@@ -1,5 +1,6 @@
 package com.example.sweater.config;
 
+import com.example.sweater.domain.Role;
 import com.example.sweater.service.UserService;
 import com.example.sweater.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                     .authorizeRequests()
                     .antMatchers("/","/greeting","/registration", "/activate/*").permitAll()
+                    .antMatchers("/users","/users/*").hasAuthority(Role.ADMIN.name())
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
